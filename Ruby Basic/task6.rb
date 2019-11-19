@@ -26,9 +26,8 @@ if ARGV.length != 3
   exit
 end
 
-namber_one = ARGV[0]
-namber_two = ARGV[1]
-arithmetic_fun = ARGV[2]
+namber_one, namber_two, arithmetic_fun = ARGV[0], ARGV[1], ARGV[2]
+
 arithmetic = Numbers.new(namber_one, namber_two)
 if arithmetic.respond_to?(arithmetic_fun)
   p arithmetic.send(arithmetic_fun)
