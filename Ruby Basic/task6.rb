@@ -21,12 +21,14 @@ class Numbers
   end
 end
 
-if ARGV.length != 3
+input_data = ARGV
+
+if input_data.length != 3
   puts 'We need exactly 3 arguments!'
   exit
 end
 
-namber_one, namber_two, arithmetic_fun = ARGV[0], ARGV[1], ARGV[2]
+namber_one, namber_two, arithmetic_fun = input_data
 
 arithmetic = Numbers.new(namber_one, namber_two)
 if arithmetic.respond_to?(arithmetic_fun)
