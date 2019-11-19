@@ -35,12 +35,14 @@ end
 
 color_palette = ['black', 'red', 'green', 'gray', 'blue', 'brown', 'magenta', 'cyan']
 
-if ARGV.length != 2
+input_data = ARGV
+
+if input_data.length != 2
   puts 'We need exactly 2 arguments: color, file!'
   exit
 end
 
-color, text_file = ARGV[0], ARGV[1]
+color, text_file = input_data
 puts "Going to open '#{text_file}'"
 
 abort("You need enter colors from palette") unless color_palette.include? color
