@@ -21,18 +21,16 @@ class Numbers
   end
 end
 
-input_data = ARGV
-
-if input_data.length != 3
+if ARGV.length != 3
   puts 'We need exactly 3 arguments!'
   exit
 end
 
-namber_one, namber_two, arithmetic_fun = input_data
+namber_one, namber_two, arithmetic_fun = ARGV
 
 arithmetic = Numbers.new(namber_one, namber_two)
 if arithmetic.respond_to?(arithmetic_fun)
-  p arithmetic.send(arithmetic_fun)
+  p arithmetic.public_send(arithmetic_fun)
 else
   p 'Error in the third argument! Available arguments is: sum, subtraction, multiplication, division.'
 end
