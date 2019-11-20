@@ -2,11 +2,11 @@ puts 'input boolean true or false:'
 
 input_value = gets.chomp.downcase
 
-boolean_keywords = ["true", "false"]
+boolean_keywords = %w[true false]
 
 abort('You need enter true/false keyword.') unless boolean_keywords.include? input_value
 
-input_value.include?("true") ? input_value = true : input_value = false
+input_value = input_value == true
 
 puts "input class is: #{input_value.class}"
 
