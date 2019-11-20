@@ -1,5 +1,4 @@
 class String
-  
   def black
     "\e[30m#{self}\e[0m"
   end
@@ -33,22 +32,20 @@ class String
   end
 end
 
-color_palette = ['black', 'red', 'green', 'gray', 'blue', 'brown', 'magenta', 'cyan']
+color_palette = %w[black red green gray blue brown magenta cyan]
 
-input_data = ARGV
-
-if input_data.length != 2
+if ARGV.length != 2
   puts 'We need exactly 2 arguments: color, file!'
   exit
 end
 
-color, text_file = input_data
+color, text_file = ARGV
 puts "Going to open '#{text_file}'"
 
-abort("You need enter colors from palette") unless color_palette.include? color
+abort('You need enter colors from palette') unless color_palette.include? color
 
 File.open(text_file) do |text|
   text.each_line do |line|
-    print line.send(color)
+    print line.public_send(color)
   end
 end
