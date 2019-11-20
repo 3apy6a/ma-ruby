@@ -6,13 +6,13 @@ boolean_keywords = %w[true false]
 
 abort('You need enter true/false keyword.') unless boolean_keywords.include? input_value
 
-input_value = input_value == true
+boolean_value = input_value.include?("true") ? true : false
 
-puts "input class is: #{input_value.class}"
+puts "input class is: #{boolean_value.class}"
 
-input_value_int = input_value ? 1 : 0
+input_value_int = boolean_value ? 1 : 0
 
-puts "convert boolean: #{p input_value} to integer: #{input_value_int}"
+puts "convert boolean: #{p boolean_value} to integer: #{input_value_int}"
 
 puts "Size of integer type  #{input_value_int.size} bite"
 
