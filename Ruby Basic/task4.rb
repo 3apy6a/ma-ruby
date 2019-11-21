@@ -6,9 +6,9 @@ boolean_keywords = %w[true false]
 
 abort('You need enter true/false keyword.') unless boolean_keywords.include? input_value
 
-boolean_value = input_value.include?("true") ? true : false
+boolean_value = input_value == "true" ? true : false
 
-puts "input class is: #{boolean_value.class}"
+puts "input class now is: #{boolean_value.class}"
 
 input_value_int = boolean_value ? 1 : 0
 
