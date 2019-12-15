@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Booking < ActiveRecord::Base
   belongs_to :customer
   belongs_to :sup
+  has_and_belongs_to_many :gears
 
   validates :start_date, :end_date, presence: true
   validate :end_date_after_start_date
@@ -12,10 +15,6 @@ class Booking < ActiveRecord::Base
   private
 
   def end_date_after_start_date
-    return if end_date.blank? || start_date.blank?
-
-    if end_date < start_date
-      errors.add(:end_date, "must be after the start date")
-    end
+    errors.add(:end_date, 'must be after the start date') unless end_date < start_date
   end
 end

@@ -1,5 +1,5 @@
-class Gear < ActiveRecord::Base
-  has_many :booking_gears, dependent: :destroy
-  has_many :bookings, through: :booking_gear
+# frozen_string_literal: true
 
+class Gear < ActiveRecord::Base
+  has_and_belongs_to_many :bookings
 end
