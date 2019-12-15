@@ -15,15 +15,6 @@ ActiveRecord::Schema.define(version: 2019_12_08_200645) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "booking_gears", force: :cascade do |t|
-    t.bigint "booking_id"
-    t.bigint "gear_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_booking_gears_on_booking_id"
-    t.index ["gear_id"], name: "index_booking_gears_on_gear_id"
-  end
-
   create_table "bookings", force: :cascade do |t|
     t.bigint "sup_id"
     t.bigint "customer_id"
@@ -35,6 +26,15 @@ ActiveRecord::Schema.define(version: 2019_12_08_200645) do
     t.index ["sup_id"], name: "index_bookings_on_sup_id"
   end
 
+  create_table "bookings_gears", id: false, force: :cascade do |t|
+    t.bigint "booking_id"
+    t.bigint "gear_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_bookings_gears_on_booking_id"
+    t.index ["gear_id"], name: "index_bookings_gears_on_gear_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -44,40 +44,33 @@ ActiveRecord::Schema.define(version: 2019_12_08_200645) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "title"
+    t.string "title", default: "Event", null: false
     t.string "photo"
-    t.text "description"
-    t.string "place"
+    t.text "description", default: "SUP event", null: false
+    t.string "place", default: "Cherkasy", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "gears", force: :cascade do |t|
     t.string "name"
-    t.string "desc"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "shops", force: :cascade do |t|
-    t.string "domain"
-    t.string "name"
-    t.string "address"
-    t.boolean "is_open"
-    t.integer "staff_count"
   end
 
   create_table "sups", force: :cascade do |t|
-    t.string "model"
-    t.string "avatar_url"
-    t.integer "user_quantity"
-    t.text "desc"
+    t.string "model", default: "SUP", null: false
+    t.string "length", null: false
+    t.string "preview_url", default: " ", null: false
+    t.integer "user_quantity", default: 0, null: false
+    t.text "description", default: " ", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "booking_gears", "bookings"
-  add_foreign_key "booking_gears", "gears"
   add_foreign_key "bookings", "customers"
   add_foreign_key "bookings", "sups"
+  add_foreign_key "bookings_gears", "bookings"
+  add_foreign_key "bookings_gears", "gears"
 end

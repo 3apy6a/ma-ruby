@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class CreateBookings < ActiveRecord::Migration[5.1]
-  
   def up
     create_table :bookings do |t|
       t.references :sup, foreign_key: true
@@ -10,7 +11,7 @@ class CreateBookings < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
   end
-  
+
   def down
     drop_table :bookings
   end

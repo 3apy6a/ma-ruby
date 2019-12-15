@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class CreateCustomers < ActiveRecord::Migration[5.1]
-  
   def up
     create_table :customers do |t|
       t.string :first_name
@@ -9,7 +10,7 @@ class CreateCustomers < ActiveRecord::Migration[5.1]
       t.timestamps
     end
   end
-  
+
   def down
     drop_table :customers
   end
