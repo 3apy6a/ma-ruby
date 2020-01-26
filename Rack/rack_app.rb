@@ -6,13 +6,14 @@ require './run.rb'
 class RackApp
   def call(env)
     request = Rack::Request.new(env)
+
     case request.path.start_with?
     when '/api/sups'
-      Handlers::Sup(request).response
-    when ',api/customers'
-      Handlers::Customer(request).response
+      Handlers::Sup.new(request).response
+    when 'api/customers'
+      Handlers::Customer.new(request).response
     else
-      Handlers::Base.response(request)
+      Rack::Response.new({ error: 'Not Found' }.to_json, 400, HEADERS).finish
     end
   end
 end
