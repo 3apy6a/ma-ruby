@@ -1,6 +1,0 @@
-development:
-  adapter: postgresql
-  host: rack_db_sup
-  database: rack_development_sup
-  username: postgres
-  password:
