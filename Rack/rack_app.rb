@@ -13,7 +13,7 @@ class RackApp
     when 'api/customers'
       Handlers::Customer.new(request).response
     else
-      Rack::Response.new({ error: 'Not Found' }.to_json, 400, HEADERS).finish
+      Rack::Base.response_404
     end
   end
 end
