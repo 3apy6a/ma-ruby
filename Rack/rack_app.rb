@@ -13,7 +13,7 @@ class RackApp
     when 'api/customers'
       Handlers::Customer.new(request).response
     else
-      Rack::Base.response_404
+      Rack::Base.new.response_404
     end
   end
 end
